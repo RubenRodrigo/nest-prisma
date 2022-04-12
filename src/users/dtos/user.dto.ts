@@ -5,14 +5,27 @@ import {
   IsArray,
   IsBoolean,
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { Modify } from 'src/common/types';
 
-export class CreateUserDto {
+type UserDto = Omit<User, 'id'>;
+type UserDtoModified = Modify<
+  UserDto,
+  {
+    name?: string;
+    profileViews?: number;
+    role?: Role;
+    coinflips?: boolean[];
+  }
+>;
+
+export class CreateUserDto implements UserDtoModified {
   @IsString()
   @IsOptional()
   name?: string;
@@ -26,13 +39,14 @@ export class CreateUserDto {
   @IsOptional()
   profileViews?: number;
 
-  @IsString()
+  @ApiProperty({ enum: Role })
+  @IsEnum(Role)
   @IsOptional()
   role?: Role;
 
   @IsBoolean({ each: true })
   @IsOptional()
-  coinflips?: Prisma.UserCreatecoinflipsInput | Prisma.Enumerable<boolean>;
+  coinflips?: boolean[];
 
   @IsOptional()
   posts?: Prisma.PostCreateInput[];

@@ -23,6 +23,7 @@ export class UsersService {
       },
       include: {
         posts: true,
+        profile: true,
       },
     });
     if (!user) {
@@ -32,11 +33,7 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.prismaService.user.findMany({
-      include: {
-        posts: true,
-      },
-    });
+    return this.prismaService.user.findMany();
   }
 
   async findFirstUserByPostsLikes(): Promise<User | {}> {
@@ -76,6 +73,7 @@ export class UsersService {
         },
         include: {
           posts: true,
+          profile: true,
         },
       });
 
@@ -83,12 +81,9 @@ export class UsersService {
     } catch (e) {
       console.log(e);
       if (e instanceof PrismaClientKnownRequestError) {
-        if (e.code === 'P2002')
-          throw new BadRequestException({
-            description:
-              'There is a unique constraint violation, a new user cannot be created.',
-            error: e.meta,
-          });
+        throw new BadRequestException({
+          error: e.meta,
+        });
       }
     }
   }
