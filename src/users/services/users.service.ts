@@ -6,6 +6,7 @@ import {
 import { User } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from 'src/prisma/services/prisma.service';
+import { GetUsersArgs } from '../dtos/get-users.args';
 import {
   CreateManyUserDto,
   CreateUserDto,
@@ -16,14 +17,14 @@ import {
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findOne(id: number): Promise<User> {
+  async findOne(id: number, posts = true, profile = true): Promise<User> {
     const user = await this.prismaService.user.findUnique({
       where: {
         id,
       },
       include: {
-        posts: true,
-        profile: true,
+        posts,
+        profile,
       },
     });
     if (!user) {
@@ -32,10 +33,9 @@ export class UsersService {
     return user;
   }
 
-  async findAll(): Promise<User[]> {
-    return this.prismaService.user.findMany();
+  async findAll(where?: GetUsersArgs): Promise<User[]> {
+    return this.prismaService.user.findMany({ where });
   }
-
   async findFirstUserByPostsLikes(): Promise<User | {}> {
     const user = await this.prismaService.user.findFirst({
       where: {

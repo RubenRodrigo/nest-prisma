@@ -13,8 +13,8 @@ type Post {
 
 type Query {
   getPost(id: Int!): Post!
-  getUser(id: Int!): User!
-  getUsers: [User!]!
+  user(id: Int!): User!
+  users(email: String, name: String): [User!]!
 }
 
 """Role for User"""
