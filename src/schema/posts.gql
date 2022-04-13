@@ -1,0 +1,16 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  authorId: Int!
+  id: ID!
+  likes: Int!
+  published: Boolean!
+  title: String!
+  views: Int!
+}
+
+type Query {
+  getPost(id: Int!): Post!
+}

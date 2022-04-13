@@ -5,6 +5,7 @@ import {
   IsJSON,
   IsBoolean,
   IsOptional,
+  IsObject,
 } from 'class-validator';
 
 import { Post, Prisma } from '@prisma/client';
@@ -28,7 +29,7 @@ export class CreatePostDto implements PostDto {
   @ApiProperty({ description: `post's author` })
   readonly authorId: number;
 
-  @IsJSON()
+  @IsObject()
   @IsOptional()
   @ApiProperty({ description: `post's comments` })
   readonly comments: Prisma.JsonValue;

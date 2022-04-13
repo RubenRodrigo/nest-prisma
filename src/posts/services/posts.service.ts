@@ -23,8 +23,9 @@ export class PostsService {
     return post;
   }
 
-  findAll() {
+  findAll(where?: { authorId: number }) {
     return this.prismaService.post.findMany({
+      where: where,
       include: {
         author: true,
       },
