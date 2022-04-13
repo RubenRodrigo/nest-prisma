@@ -6,7 +6,10 @@ import {
 import { ExtendedProfile } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from 'src/prisma/services/prisma.service';
-import { CreateProfileDto, UpdateProfileDto } from '../dtos/profile.dto';
+import {
+  CreateProfileDto,
+  UpdateProfileDto,
+} from '../dtos/request/profile.dto';
 
 @Injectable()
 export class ProfilesService {

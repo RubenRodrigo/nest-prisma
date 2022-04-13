@@ -13,7 +13,7 @@ import {
   CreateManyUserDto,
   CreateUserDto,
   UpdateUserDto,
-} from '../dtos/user.dto';
+} from '../dtos/request/user.dto';
 import { UsersService } from '../services/users.service';
 
 @ApiTags('Users')

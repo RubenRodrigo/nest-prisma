@@ -53,6 +53,30 @@ export class PostsService {
     });
   }
 
+  async upvoteById(args: { postId: number }) {
+    const post = await this.findOne(args.postId);
+
+    return this.prismaService.post.update({
+      where: { id: post.id },
+      data: { likes: { increment: 1 } },
+      include: {
+        author: true,
+      },
+    });
+  }
+
+  async downvoteById(postId: number) {
+    const post = await this.findOne(postId);
+
+    return this.prismaService.post.update({
+      where: { id: post.id },
+      data: { likes: { decrement: 1 } },
+      include: {
+        author: true,
+      },
+    });
+  }
+
   async remove(id: number) {
     try {
       const removedPost = await this.prismaService.post.delete({

@@ -9,7 +9,10 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateProfileDto, UpdateProfileDto } from '../dtos/profile.dto';
+import {
+  CreateProfileDto,
+  UpdateProfileDto,
+} from '../dtos/request/profile.dto';
 import { ProfilesService } from '../services/profiles.service';
 
 @ApiTags('Profiles')

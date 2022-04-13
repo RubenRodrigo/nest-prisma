@@ -8,7 +8,7 @@ import {
 } from '@nestjs/graphql';
 import { Post } from 'src/posts/models/post.model';
 import { PostsService } from 'src/posts/services/posts.service';
-import { GetUsersArgs } from '../dtos/get-users.args';
+import { GetUsersArgs } from '../dtos/args/get-users.args';
 import { User } from '../models/user.model';
 import { UsersService } from '../services/users.service';
 

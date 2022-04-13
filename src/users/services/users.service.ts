@@ -6,12 +6,12 @@ import {
 import { User } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from 'src/prisma/services/prisma.service';
-import { GetUsersArgs } from '../dtos/get-users.args';
+import { GetUsersArgs } from '../dtos/args/get-users.args';
 import {
   CreateManyUserDto,
   CreateUserDto,
   UpdateUserDto,
-} from '../dtos/user.dto';
+} from '../dtos/request/user.dto';
 
 @Injectable()
 export class UsersService {

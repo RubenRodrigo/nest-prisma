@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Mutation {
+  downvotePost(postId: Int!): Post!
+  upvotePost(upvotePostData: UpvotePostInput!): Post!
+}
+
 type Post {
   authorId: Int!
   id: ID!
@@ -12,7 +17,8 @@ type Post {
 }
 
 type Query {
-  getPost(id: Int!): Post!
+  post(id: Int!): Post!
+  posts(authorId: Int): [Post!]!
   user(id: Int!): User!
   users(email: String, name: String): [User!]!
 }
@@ -21,6 +27,10 @@ type Query {
 enum Role {
   ADMIN
   USER
+}
+
+input UpvotePostInput {
+  postId: Float!
 }
 
 type User {
